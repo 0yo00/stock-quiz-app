@@ -622,8 +622,8 @@ def build_chart(q: dict, revealed: bool = False) -> go.Figure:
         hovermode="x unified",
         bargap=0.1,
     )
-    fig.update_xaxes(gridcolor="rgba(100,140,220,0.10)", showspikes=False)
-    fig.update_yaxes(gridcolor="rgba(100,140,220,0.10)", showspikes=False)
+    fig.update_xaxes(gridcolor="rgba(100,140,220,0.10)", showspikes=False, fixedrange=True)
+    fig.update_yaxes(gridcolor="rgba(100,140,220,0.10)", showspikes=False, fixedrange=True)
     fig.update_yaxes(range=[limit_down - _y_pad, limit_up + _y_pad], row=1, col=1)
     fig.update_xaxes(rangeslider_visible=False)
     return fig
@@ -849,7 +849,11 @@ else:
 
     # K 線圖
     fig = build_chart(q, revealed=st.session_state.answered)
-    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig, use_container_width=True, config={
+        "displayModeBar": False,
+        "scrollZoom": False,
+        "doubleClick": False,
+    })
 
     # 線條顏色說明
     st.caption(
