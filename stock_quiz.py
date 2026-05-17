@@ -521,19 +521,19 @@ def build_chart(q: dict, revealed: bool = False) -> go.Figure:
     # ── 左側色塊標籤（漲停/平盤/跌停/現價）──
     fig.add_annotation(xref="paper", yref="y", x=0, y=limit_up,
                        text=f"<b>漲停 {limit_up:.2f}</b>", showarrow=False,
-                       xanchor="right", font=dict(size=11, color="#fff"),
+                       xanchor="right", font=dict(size=10, color="#fff"),
                        bgcolor="#dc2626", bordercolor="#fca5a5",
-                       borderwidth=1, borderpad=4, xshift=-3)
+                       borderwidth=1, borderpad=2, xshift=-2)
     fig.add_annotation(xref="paper", yref="y", x=0, y=par_price,
                        text=f"<b>平盤 {par_price:.2f}</b>", showarrow=False,
-                       xanchor="right", font=dict(size=11, color="#0b1220"),
+                       xanchor="right", font=dict(size=10, color="#0b1220"),
                        bgcolor="#fbbf24", bordercolor="#fde047",
-                       borderwidth=1, borderpad=4, xshift=-3)
+                       borderwidth=1, borderpad=2, xshift=-2)
     fig.add_annotation(xref="paper", yref="y", x=0, y=limit_down,
                        text=f"<b>跌停 {limit_down:.2f}</b>", showarrow=False,
-                       xanchor="right", font=dict(size=11, color="#fff"),
+                       xanchor="right", font=dict(size=10, color="#fff"),
                        bgcolor="#16a34a", bordercolor="#86efac",
-                       borderwidth=1, borderpad=4, xshift=-3)
+                       borderwidth=1, borderpad=2, xshift=-2)
 
     reveal_price = q["reveal_price"]
     _chg_par = q.get("chg_vs_par", 0)
@@ -542,9 +542,9 @@ def build_chart(q: dict, revealed: bool = False) -> go.Figure:
     fig.add_annotation(xref="paper", yref="y", x=0, y=reveal_price,
                        text=f"<b>現價 {reveal_price:.2f}<br>{_chg_par:+.2f}%</b>",
                        showarrow=False, xanchor="right",
-                       font=dict(size=12, color="#fff"),
+                       font=dict(size=10, color="#fff"),
                        bgcolor=_r_color, bordercolor="#fff",
-                       borderwidth=1, borderpad=4, xshift=-3)
+                       borderwidth=1, borderpad=2, xshift=-2)
 
     # ── 揭露垂直線（揭曉後）──
     if revealed and reveal_idx < len(df_full):
@@ -610,9 +610,9 @@ def build_chart(q: dict, revealed: bool = False) -> go.Figure:
     _y_pad = (limit_up - limit_down) * 0.02
     fig.update_layout(
         template="plotly_dark",
-        height=960,                # 從 820 加到 960，主圖看得更舒服
+        height=1100,
         showlegend=False,
-        margin=dict(l=105, r=85, t=45, b=15),
+        margin=dict(l=70, r=70, t=40, b=10),
         paper_bgcolor="#0b1220",
         plot_bgcolor="#0b1220",
         title=dict(
